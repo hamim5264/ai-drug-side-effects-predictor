@@ -1,0 +1,43 @@
+<!-- web_app/templates/index.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Drug Side Effect Predictor</title>
+</head>
+<body style="font-family:sans-serif; text-align:center; padding:50px; background-color:#f4f4f4;">
+    <h1 style="color:#2a7a5f;">🔍 AI-Driven Drug Side Effect Predictor</h1>
+    <p>Enter a drug name and medical condition to predict possible side effects.<br>
+       You can use both **international** and **Bangladeshi** drug names like <b>Napa, Monas, Losectil</b> etc.</p>
+
+    <form action="/predict" method="post" style="margin-top:30px;">
+        <label><b>Drug Name:</b></label><br>
+        <input type="text" name="drug_name" placeholder="e.g. Napa" required style="padding:10px; width:250px;"><br><br>
+
+        <label><b>Medical Condition:</b></label><br>
+        <input type="text" name="condition" placeholder="e.g. Fever" required style="padding:10px; width:250px;"><br><br>
+
+        <input type="submit" value="Predict Side Effects" style="padding:10px 20px; background-color:#2a7a5f; color:white; border:none; cursor:pointer;">
+    </form>
+
+    {% if prediction %}
+    <div style="margin-top:40px; background:white; padding:20px; border-radius:10px; display:inline-block; box-shadow: 0px 0px 10px #ccc;">
+        <h3>✅ Prediction Result</h3>
+        <p><b>Based on your input:</b></p>
+        <p>🔹 <b>Drug Name:</b> {{ request.form['drug_name'] }}</p>
+        <p>🔹 <b>Medical Condition:</b> {{ request.form['condition'] }}</p>
+        <p><b>⚠️ Predicted Side Effects:</b></p>
+        <p style="color:#c0392b; font-weight:bold;">{{ prediction }}</p>
+    </div>
+    {% endif %}
+    <hr style="margin-top:60px;">
+
+    <footer style="margin-top:20px; font-size:14px; color:#555;">
+        <p>🧠 This model and app is developed by <strong>Team Sentience Labs</strong></p>
+        <p>👨‍💻 Team Members:<br>
+        MD. ABDUL HAMIM<br>
+        MD. AKMAL HOSSAIN RAZU</p>
+    </footer>
+
+</body>
+</html>
